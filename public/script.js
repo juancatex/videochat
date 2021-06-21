@@ -58,16 +58,7 @@ const connectToNewUser = (userId, stream) => {
   });
 };
 
- 
-
-
-const connectToNewUser2 = (userId, stream) => {
-  const call = peer.call(userId, stream);
   
-  call.on("stream", (userVideoStream) => {
-    addVideoStream2(userId, userVideoStream);
-  });
-};
 const addVideoStream = (video, stream) => {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
@@ -75,21 +66,27 @@ const addVideoStream = (video, stream) => {
     videoGrid.append(video);
   });
 };
-const addVideoStream2 = (letras, stream) => {
+const connectToNewUser2 = (userId, stream) => {
+  const call = peer.call(userId, stream);
   const video = document.createElement("video"); 
-  var visor = document.createElement("div"); 
+  const visor = document.createElement("div"); 
   visor.classList.add('visorh');
-  video.srcObject = stream;
-    video.addEventListener("loadedmetadata", () => {
-      video.play(); 
-      var h = document.createElement("div");
+  var h = document.createElement("div");
       h.classList.add('barra');
       var t = document.createTextNode(letras);
-      h.appendChild(t); 
-      visor.append(h);
+      h.appendChild(t);  
       visor.append(video);
-      videoGrid.appendChild(visor);
-    });
+  call.on("stream", (userVideoStream) => {
+    addVideoStream2(visor, userVideoStream);
+  });
+};
+const addVideoStream2 = (visor, stream) => {
+  let video = visor.querySelector('video');
+  video.srcObject = stream;
+  video.addEventListener("loadedmetadata", () => {
+    video.play();
+    videoGrid.append(visor);
+  });
 };
 
 peer.on("open", (id) => {
