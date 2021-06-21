@@ -124,7 +124,7 @@ video {
   color: var(--main-light);
   font-size: 1.2rem; 
   margin: 7px;
-  padding: 0 10px 0 10px;
+  padding: 0 20px 0 20px;
 }
 
 .background__red {

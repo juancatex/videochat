@@ -34,16 +34,8 @@ navigator.mediaDevices
     video: true,
   })
   .then((stream) => {
-    myVideoStream = stream; 
-                const visor = document.createElement("div"); 
-                visor.classList.add('visorh');
-                const h = document.createElement("div");
-                h.classList.add('barra');
-                var t = document.createTextNode("letras");
-                h.appendChild(t);  
-                visor.append(h);
-                visor.append(myVideo); 
-      addVideoStream2(visor, stream);
+    myVideoStream = stream;  
+    addVideoStream(myVideo, stream);
 
     peer.on("call", (call) => {
       call.answer(stream);
