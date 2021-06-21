@@ -41,6 +41,7 @@ navigator.mediaDevices
       call.answer(stream);
       const video = document.createElement("video");
       call.on("stream", (userVideoStream) => {
+        alert('paso');
         addVideoStream(video, userVideoStream);
       });
     });
