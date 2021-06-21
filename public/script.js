@@ -73,7 +73,7 @@ const connectToNewUser2 = (userId, stream) => {
   visor.classList.add('visorh');
   var h = document.createElement("div");
       h.classList.add('barra');
-      var t = document.createTextNode(letras);
+      var t = document.createTextNode("letras");
       h.appendChild(t);  
       visor.append(video);
   call.on("stream", (userVideoStream) => {
