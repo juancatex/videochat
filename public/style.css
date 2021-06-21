@@ -44,6 +44,20 @@ body{
   display: flex;
   flex-direction: column;
 }
+.barra{
+  text-align: center; 
+  z-index: 1; 
+  margin-bottom: 12px;
+  position: absolute;
+  background-color: azure;
+  bottom: 0; 
+  width: 100%;
+}
+.visorh{
+  height: fit-content; 
+    display: flex;
+    position: relative;
+}
 
 .videos__group {
   /* flex-grow: 1;

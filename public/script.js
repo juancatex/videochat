@@ -63,15 +63,16 @@ const connectToNewUser2 = (userId, stream) => {
   call.on("stream", (stream) => {
     const video = document.createElement("video"); 
     var visor = document.createElement("div"); 
+    visor.classList.add('visorh');
     video.srcObject = stream;
       video.addEventListener("loadedmetadata", () => {
-        video.play();
-        visor.append(video);
-        
-        var h = document.createElement("H3");
+        video.play(); 
+        var h = document.createElement("div");
+        h.classList.add('barra');
         var t = document.createTextNode("Hello World");
         h.appendChild(t); 
         visor.append(h);
+        visor.append(video);
         videoGrid.appendChild(visor);
       });
   });
