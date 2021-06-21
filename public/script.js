@@ -34,20 +34,28 @@ navigator.mediaDevices
     video: true,
   })
   .then((stream) => {
-    myVideoStream = stream;
-   // addVideoStream(myVideo, stream);
+    myVideoStream = stream; 
+                const visor = document.createElement("div"); 
+                visor.classList.add('visorh');
+                const h = document.createElement("div");
+                h.classList.add('barra');
+                var t = document.createTextNode("letras");
+                h.appendChild(t);  
+                visor.append(h);
+                visor.append(myVideo); 
+      addVideoStream2(visor, stream);
 
     peer.on("call", (call) => {
       call.answer(stream);
       const video = document.createElement("video");
-      call.on("stream", (userVideoStream) => {
-        alert('paso');
+      alert('paso');
+      call.on("stream", (userVideoStream) => { 
         addVideoStream(video, userVideoStream);
       });
     });
 
     socket.on("user-connected", (userId) => {
-      connectToNewUser2(userId, stream);
+      connectToNewUser(userId, stream);
     });
   });
 
