@@ -71,10 +71,11 @@ const connectToNewUser2 = (userId, stream) => {
   const video = document.createElement("video"); 
   const visor = document.createElement("div"); 
   visor.classList.add('visorh');
-  var h = document.createElement("div");
+  const h = document.createElement("div");
       h.classList.add('barra');
       var t = document.createTextNode("letras");
       h.appendChild(t);  
+      visor.append(h);
       visor.append(video);
   call.on("stream", (userVideoStream) => {
     addVideoStream2(visor, userVideoStream);
