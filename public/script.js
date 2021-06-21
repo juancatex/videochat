@@ -46,7 +46,7 @@ navigator.mediaDevices
     });
 
     socket.on("user-connected", (userId) => {
-      connectToNewUser(userId, stream);
+      connectToNewUser2(userId, stream);
     });
   });
 
@@ -55,6 +55,13 @@ const connectToNewUser = (userId, stream) => {
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
     addVideoStream(video, userVideoStream);
+  });
+};
+const connectToNewUser2 = (userId, stream) => {
+  const call = peer.call(userId, stream);
+  const video = document.createElement("video");
+  call.on("stream", (userVideoStream) => {
+    addVideoStream2(video, userVideoStream);
   });
 };
 
@@ -67,6 +74,17 @@ const addVideoStream = (video, stream) => {
   video.addEventListener("loadedmetadata", () => {
     video.play();
     videoGrid.append(video);
+  });
+};
+const addVideoStream2 = (video, stream) => {
+  const visor = document.createElement("div");
+  
+  video.srcObject = stream;
+  video.addEventListener("loadedmetadata", () => {
+    video.play();
+    visor.append(video);
+    visor.append('<h3>hola</h3>');
+    videoGrid.append(visor);
   });
 };
 

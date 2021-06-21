@@ -40,7 +40,7 @@ body{
   width: 5px;
 }
 .main__left {
-  flex: 0.7;
+  flex:1;
   display: flex;
   flex-direction: column;
 }
