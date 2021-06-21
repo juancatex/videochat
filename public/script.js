@@ -57,31 +57,17 @@ const connectToNewUser = (userId, stream) => {
     addVideoStream(video, userVideoStream);
   });
 };
+
+ 
+
+
 const connectToNewUser2 = (userId, stream) => {
   const call = peer.call(userId, stream);
   
-  call.on("stream", (stream) => {
-    const video = document.createElement("video"); 
-    var visor = document.createElement("div"); 
-    visor.classList.add('visorh');
-    video.srcObject = stream;
-      video.addEventListener("loadedmetadata", () => {
-        video.play(); 
-        var h = document.createElement("div");
-        h.classList.add('barra');
-        var t = document.createTextNode("Hello World");
-        h.appendChild(t); 
-        visor.append(h);
-        visor.append(video);
-        videoGrid.appendChild(visor);
-      });
+  call.on("stream", (userVideoStream) => {
+    addVideoStream2(userId, userVideoStream);
   });
 };
-
-peer.on("open", (id) => {
-  socket.emit("join-room", ROOM_ID, id, user);
-});
-
 const addVideoStream = (video, stream) => {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
@@ -89,6 +75,28 @@ const addVideoStream = (video, stream) => {
     videoGrid.append(video);
   });
 };
+const addVideoStream2 = (letras, stream) => {
+  const video = document.createElement("video"); 
+  var visor = document.createElement("div"); 
+  visor.classList.add('visorh');
+  video.srcObject = stream;
+    video.addEventListener("loadedmetadata", () => {
+      video.play(); 
+      var h = document.createElement("div");
+      h.classList.add('barra');
+      var t = document.createTextNode(letras);
+      h.appendChild(t); 
+      visor.append(h);
+      visor.append(video);
+      videoGrid.appendChild(visor);
+    });
+};
+
+peer.on("open", (id) => {
+  socket.emit("join-room", ROOM_ID, id, user);
+});
+
+
  
 
 let text = document.querySelector("#chat_message");
