@@ -240,7 +240,8 @@ video {
 
   video {
     height: auto;
-    width: 100%;
+    /* width: 100%; */
+    width:50%;
   }
 
   #showChat {
