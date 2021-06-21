@@ -59,9 +59,21 @@ const connectToNewUser = (userId, stream) => {
 };
 const connectToNewUser2 = (userId, stream) => {
   const call = peer.call(userId, stream);
-  const video = document.createElement("video");
-  call.on("stream", (userVideoStream) => {
-    addVideoStream2(video, userVideoStream);
+  
+  call.on("stream", (stream) => {
+    const video = document.createElement("video"); 
+    var visor = document.createElement("div"); 
+    video.srcObject = stream;
+      video.addEventListener("loadedmetadata", () => {
+        video.play();
+        visor.append(video);
+        
+        var h = document.createElement("H3");
+        var t = document.createTextNode("Hello World");
+        h.appendChild(t); 
+        visor.append(h);
+        videoGrid.appendChild(visor);
+      });
   });
 };
 
@@ -76,17 +88,7 @@ const addVideoStream = (video, stream) => {
     videoGrid.append(video);
   });
 };
-const addVideoStream2 = (video, stream) => {
-  const visor = document.createElement("div");
-  
-  video.srcObject = stream;
-  video.addEventListener("loadedmetadata", () => {
-    video.play();
-    visor.append(video);
-    visor.append('<h3>hola</h3>');
-    videoGrid.append(visor);
-  });
-};
+ 
 
 let text = document.querySelector("#chat_message");
 let send = document.getElementById("send");
