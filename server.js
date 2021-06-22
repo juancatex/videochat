@@ -20,8 +20,11 @@ app.get("/", (req, res) => {
   res.redirect(`/${uuidv4()}`);
 });
 
-app.get("/:room", (req, res) => {
-  console.log('noifg=',req.body);
+app.get("/:room&:user", (req, res) => { 
+  res.render("room", { roomId: req.params.room ,user: req.params.user });
+});
+
+app.get("/:room", (req, res) => { 
   res.render("room", { roomId: req.params.room });
 });
 

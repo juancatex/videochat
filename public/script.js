@@ -19,7 +19,7 @@ showChat.addEventListener("click", () => {
   document.querySelector(".header__back").style.display = "block";
 });
 
-const user = prompt("Enter your name");
+// const user = prompt("Enter your name");
 
 var peer = new Peer(undefined, {
   path: "/peerjs",
@@ -91,7 +91,7 @@ const addVideoStream2 = (visor, stream) => {
 };
 
 peer.on("open", (id) => {
-  socket.emit("join-room", ROOM_ID, id, user);
+  socket.emit("join-room", ROOM_ID, id, USERNAME);
 });
 
 
@@ -154,7 +154,7 @@ socket.on("createMessage", (message, userName) => {
     messages.innerHTML +
     `<div class="message">
         <b><i class="far fa-user-circle"></i> <span> ${
-          userName === user ? "me" : userName
+          userName === USERNAME ? "Yo" : userName
         }</span> </b>
         <span>${message}</span>
     </div>`;
